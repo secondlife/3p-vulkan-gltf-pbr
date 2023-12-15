@@ -2,15 +2,11 @@ name: Build
 on: [push]
 jobs:
   build:
-    strategy:
-      matrix:
-        os: [windows-2022, macos-11, ubuntu-22.04]
-    continue-on-error: false
-    runs-on: ${{ matrix.os }}
+    runs-on: [ubuntu-latest]
     steps:
       - uses: secondlife/action-autobuild@which-branch
         with:
-          addrsize: "64"
+          platform: common
           token: ${{ github.token }}
   release:
     needs: build
